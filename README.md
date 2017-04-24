@@ -1,11 +1,22 @@
 # README #
 
-**Crunch-Cracker 1.0b**
+**Crunch-Cracker 1.0 beta**
+
+Function crunch simple Wordlist generator
+ 
+* Date: 10/10/2016
+* Dev: Shell
+* BY: KURO
+
+**Crunch-Cracker 1.1**
 
 Automate créateur de Wordlist
 
-* Date: 10/10/2016
-* Langage:FR
+* + Setting menu Multilangual
+* + Graphic
+
+* Date: 23/04/2017
+* Langage:ENG, FR, ESP
 * Dev: Shell
 * BY: KURO
 
