@@ -12,8 +12,8 @@ Function crunch simple Wordlist generator
 
 Automate créateur de Wordlist
 
-* + Setting menu Multilangual
-* + Graphic
++ Setting menu Multilangual
++ Graphic
 
 * Date: 23/04/2017
 * Langage:ENG, FR, ESP
