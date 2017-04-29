@@ -61,7 +61,6 @@ Titre=" Crunch-Cracker v1.1 "
 
 chmod +x aimon-ng
 
-#mkdir $DUMP
 if [ -d "$DUMP" ];
 		then
 			echo -e " ";
