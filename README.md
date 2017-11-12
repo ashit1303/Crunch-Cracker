@@ -1,3 +1,5 @@
+![crunch-cracker.jpg](https://github.com/KURO-CODE/Crunch-Cracker/blob/master/crunch-cracker.jpg)
+
 # README #
 
 * Générateur de Wordlist et cracker Wifi (WEP, WPA/WP2). Crunch-Cracker utilise crunch pour la création de liste et aircrack-ng pour le hack wifi...
