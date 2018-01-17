@@ -36,7 +36,7 @@ Wifi cracker
 * Langage:ENG, FR, ESP
 * Dev: Shell
 
-# pré-requis #
+# Prerequisites #
 
 * Crunch
 * Aircrack-ng (Fullpack)
