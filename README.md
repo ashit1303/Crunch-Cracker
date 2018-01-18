@@ -36,6 +36,18 @@ Wifi cracker
 * Langage:ENG, FR, ESP
 * Dev: Shell
 
+**Crunch-Cracker 1.3**
+
+Automate Wordlist générator
+Wifi cracker
+
++ Bug Fix 
++ Graphic
+
+* Date: 17/01/2018
+* Langage:ENG, FR, ESP
+* Dev: Shell
+
 # Prerequisites #
 
 * Crunch
