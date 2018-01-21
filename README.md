@@ -43,6 +43,7 @@ Wifi cracker
 
 + Bug Fix 
 + Graphic
++ Report file
 
 * Date: 17/01/2018
 * Langage:ENG, FR, ESP
