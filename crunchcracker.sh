@@ -681,9 +681,6 @@ function OUTSCAN {
 	Host_SSID2=`echo $Host_SSID | sed 's/ //g' | sed 's/\[//g;s/\]//g' | sed 's/\://g;s/\://g' | sed 's/\*//g;s/\*//g' | sed 's/(//g' | sed 's/)//g'`
 
 	HANDSHAK & 
-	sleep 4
-	echo "#!/bin/sh
-xterm -e \"timeout 10 mdk3 $device a -d $Host_MAC -m\"">> $TMP/MDK
 sleep 4
 AirPlay
 VALID
