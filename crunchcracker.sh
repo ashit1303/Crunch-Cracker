@@ -84,7 +84,6 @@ DATE=`date`
 
 #**** TXT ****
 Air_P="AirPlay"
-Mdk_3="MDK3"
 
 #**** Info ****
 Inf_Name="Crunch-Cracker"
@@ -585,7 +584,7 @@ function MONITOR {
 	echo 
 	echo -e "$SELECT_DEVICE$Y"
 	echo
-	ifconfig | grep -a 'wlan' | awk '{print $1}'
+	ifconfig | grep -a 'wl' | awk '{print $1}'
 	echo -e "$W"
 	read -p "$CHOICE_DEVICE " device
 	clear
@@ -768,6 +767,9 @@ CRACKLIST
 
 #~~~~ Function CRK ~~~~
 function CRK {
+        clear
+	echo
+	top
 	if [ -d "$TMP2" ];
 		then
 			echo -e " ";
