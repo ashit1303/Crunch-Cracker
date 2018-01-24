@@ -56,5 +56,7 @@ Wifi cracker
 
 # Use # 
 
-1. chmod +x crunchcracker.sh
-2. ./crunchcracker.sh
+1. git clone https://github.com/KURO-CODE/Crunch-Cracker.git
+2. cd Crunch-Cracker
+3. chmod +x crunchcracker.sh
+4. sudo ./crunchcracker.sh
