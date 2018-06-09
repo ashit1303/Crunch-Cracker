@@ -2,11 +2,11 @@
 
 # README #
 
-* Generador de lista y cracker Wifi
+* Generador de lista, routar flood y cracker Wifi
 
-* Générateur de Wordlist et cracker Wifi (WEP, WPA/WP2).
+* Générateur de Wordlist, router flood et cracker Wifi (WEP, WPA/WP2).
 
-* Wordlist générator and Wifi Cracker
+* Wordlist générator, router flood and Wifi Cracker
 
 **Crunch-Cracker 1.0 beta**
 
