@@ -51,9 +51,24 @@ Wifi cracker
 * Langage:ENG, FR, ESP
 * Dev: Shell
 
+**Crunch-Cracker V 1.4**
+					 
++ Compatibility
+  - Ubuntu
+  - Kali 
+
++ Trap (Exit)
++ Root perm.
++ Router flood
+ 
+* Date: 08/06/2018
+* Dev: Shell
+* BY: KURO-CODE
+
 # Prerequisites #
 
 * Crunch
+* Macchanger
 * Aircrack-ng (Fullpack)
 
 # Use # 
