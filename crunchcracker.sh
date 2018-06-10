@@ -775,7 +775,7 @@ VALID() {
 		case $Selection in
 			1) KILLPROC; SETCRACK;;
 			2) AirPlay;;
-			9) KILLPROC; SCANNER;;
+			9) KILLPROC; SCANNER;  OUTSCAN; HANDSHAK; sleep 4; AirPlay; VALID;;
 			0) NETWORKRESTOR; KILLPROC; EXITMENU;;
 			*) echo -e "$W [$R $error$W ]"; sleep 3; VALID;;
 		esac
