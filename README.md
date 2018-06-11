@@ -55,11 +55,11 @@ Wifi cracker
 					 
 + Compatibility
   - Ubuntu
-  - Kali 
-  
-+ Trap (Exit)
+  - Kali
+
++ Trap (exit)
 + Root perm.
-+ Router flood
++ Router Flood
 
 * Date: 08/06/2018
 * Dev: Shell
